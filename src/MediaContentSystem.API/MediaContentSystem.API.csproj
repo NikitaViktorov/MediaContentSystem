@@ -11,6 +11,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.9" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.18.1" />
+    <PackageReference Include="Npgsql" Version="8.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
@@ -20,8 +21,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MediaContentSystem.Application\MediaContentSystem.Application.csproj" />
-    <ProjectReference Include="..\MediaContentSystem.Domain\MediaContentSystem.Domain.csproj" />
-    <ProjectReference Include="..\MediaContentSystem.Repository\MediaContentSystem.Repository.csproj" />
+    <ProjectReference Include="..\MediaContentSystem.Persistence\MediaContentSystem.Persistence.csproj" />
+    <ProjectReference Include="..\MediaContentSystem.Persistence.Migrations\MediaContentSystem.Persistence.Migrations.csproj" />
   </ItemGroup>
 
 </Project>

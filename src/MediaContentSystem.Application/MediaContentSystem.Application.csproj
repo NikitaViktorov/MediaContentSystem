@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MediaContentSystem.Domain\MediaContentSystem.Domain.csproj" />
-    <ProjectReference Include="..\MediaContentSystem.Repository\MediaContentSystem.Repository.csproj" />
+    <ProjectReference Include="..\MediaContentSystem.Persistence\MediaContentSystem.Persistence.csproj" />
   </ItemGroup>
 
 </Project>
