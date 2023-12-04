@@ -10,12 +10,7 @@ public class UserEntityConfiguration : IEntityTypeConfiguration<User>
     {
         builder.ToTable("Users");
 
-        builder.HasKey(_ => _.Id);
-        builder.Ignore(_ => _.DomainEvents);
-
-        builder
-            .HasMany(_ => _.Themes)
-            .WithMany(_ => _.Users)
-            .UsingEntity("UserThemes");
+        builder.HasKey(u => u.Id);
+        builder.Ignore(u => u.DomainEvents);
     }
 }

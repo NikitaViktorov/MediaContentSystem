@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using MediaContentSystem.Domain.Aggregates.ThemeAggregates;
 using MediaContentSystem.Domain.Aggregates.UserAggregate;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,7 +12,6 @@ public class MediaContentSystemContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Theme>();
         modelBuilder.Entity<User>();
 
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());

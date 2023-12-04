@@ -22,24 +22,6 @@ namespace MediaContentSystem.Persistence.Migrations.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("MediaContentSystem.Domain.Aggregates.ThemeAggregates.Theme", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Themes", (string)null);
-                });
-
             modelBuilder.Entity("MediaContentSystem.Domain.Aggregates.UserAggregate.User", b =>
                 {
                     b.Property<int>("Id")
@@ -72,36 +54,6 @@ namespace MediaContentSystem.Persistence.Migrations.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users", (string)null);
-                });
-
-            modelBuilder.Entity("UserThemes", b =>
-                {
-                    b.Property<int>("ThemesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UsersId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ThemesId", "UsersId");
-
-                    b.HasIndex("UsersId");
-
-                    b.ToTable("UserThemes");
-                });
-
-            modelBuilder.Entity("UserThemes", b =>
-                {
-                    b.HasOne("MediaContentSystem.Domain.Aggregates.ThemeAggregates.Theme", null)
-                        .WithMany()
-                        .HasForeignKey("ThemesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MediaContentSystem.Domain.Aggregates.UserAggregate.User", null)
-                        .WithMany()
-                        .HasForeignKey("UsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
