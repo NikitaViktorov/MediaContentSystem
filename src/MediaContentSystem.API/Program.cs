@@ -1,9 +1,16 @@
+using MediaContentSystem.Persistence.Context;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<MediaContentSystemContext>(opt => opt.UseSqlServer(
+    builder.Configuration.GetConnectionString("MediaContentSystemConnectionString"),
+    opts => opts.MigrationsAssembly("MediaContentSystem.Persistence.Migrations")));
 
 var app = builder.Build();
 

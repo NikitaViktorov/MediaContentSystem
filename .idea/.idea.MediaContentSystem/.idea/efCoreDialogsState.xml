@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="EfCoreDialogsState">
+    <option name="keyValueStorage">
+      <map>
+        <entry key="Common:buildConfiguration" value="Debug" />
+        <entry key="Common:f9888363-bd80-4bbb-9618-e7e0001a2dca:dbContext" value="MediaContentSystem.Persistence.Context.MediaContentSystemContext" />
+        <entry key="Common:noBuild" value="false" />
+        <entry key="Common:outputFolder" value="Migrations" />
+        <entry key="Common:targetFramework" value="net8.0" />
+      </map>
+    </option>
+  </component>
+</project>

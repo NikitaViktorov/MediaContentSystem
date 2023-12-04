@@ -3,19 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaContentSystem.API", "src\MediaContentSystem.API\MediaContentSystem.API.csproj", "{A62077C2-4B88-4431-8805-E779582B6344}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaContentSystem.API", "src\MediaContentSystem.API\MediaContentSystem.API.csproj", "{A62077C2-4B88-4431-8805-E779582B6344}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaContentSystem.Application", "src\MediaContentSystem.Application\MediaContentSystem.Application.csproj", "{D0A89B9E-C569-4F13-A050-886F635E49D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaContentSystem.Application", "src\MediaContentSystem.Application\MediaContentSystem.Application.csproj", "{D0A89B9E-C569-4F13-A050-886F635E49D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaContentSystem.Domain", "src\MediaContentSystem.Domain\MediaContentSystem.Domain.csproj", "{8B79BEEF-7670-4B9B-A971-7672E1B9F8F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaContentSystem.Domain", "src\MediaContentSystem.Domain\MediaContentSystem.Domain.csproj", "{8B79BEEF-7670-4B9B-A971-7672E1B9F8F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaContentSystem.UnitTests", "tests\MediaContentSystem.UnitTests\MediaContentSystem.UnitTests.csproj", "{DC462115-1739-43EC-844D-17C505610F69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaContentSystem.UnitTests", "tests\MediaContentSystem.UnitTests\MediaContentSystem.UnitTests.csproj", "{DC462115-1739-43EC-844D-17C505610F69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaContentSystem.IntegrationTests", "tests\MediaContentSystem.IntegrationTests\MediaContentSystem.IntegrationTests.csproj", "{637A388C-541E-413B-B974-234DD46CDFE0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaContentSystem.IntegrationTests", "tests\MediaContentSystem.IntegrationTests\MediaContentSystem.IntegrationTests.csproj", "{637A388C-541E-413B-B974-234DD46CDFE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaContentSystem.Persistence", "src\MediaContentSystem.Persistence\MediaContentSystem.Persistence.csproj", "{455EB846-15C2-483B-A41F-93FE4E1DE2ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaContentSystem.Persistence", "src\MediaContentSystem.Persistence\MediaContentSystem.Persistence.csproj", "{455EB846-15C2-483B-A41F-93FE4E1DE2ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaContentSystem.Persistence.Migrations", "src\MediaContentSystem.Persistence.Migrations\MediaContentSystem.Persistence.Migrations.csproj", "{F9888363-BD80-4BBB-9618-E7E0001A2DCA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaContentSystem.Persistence.Migrations", "MediaContentSystem.Persistence.Migrations\MediaContentSystem.Persistence.Migrations.csproj", "{D119A4AD-2D4E-4A4D-A0A3-B002DDF04EF2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,10 +47,10 @@ Global
 		{455EB846-15C2-483B-A41F-93FE4E1DE2ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{455EB846-15C2-483B-A41F-93FE4E1DE2ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{455EB846-15C2-483B-A41F-93FE4E1DE2ED}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F9888363-BD80-4BBB-9618-E7E0001A2DCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F9888363-BD80-4BBB-9618-E7E0001A2DCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F9888363-BD80-4BBB-9618-E7E0001A2DCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F9888363-BD80-4BBB-9618-E7E0001A2DCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D119A4AD-2D4E-4A4D-A0A3-B002DDF04EF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D119A4AD-2D4E-4A4D-A0A3-B002DDF04EF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D119A4AD-2D4E-4A4D-A0A3-B002DDF04EF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D119A4AD-2D4E-4A4D-A0A3-B002DDF04EF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
