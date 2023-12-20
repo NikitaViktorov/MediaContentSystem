@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaContentSystem.Integrat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaContentSystem.Persistence", "src\MediaContentSystem.Persistence\MediaContentSystem.Persistence.csproj", "{455EB846-15C2-483B-A41F-93FE4E1DE2ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaContentSystem.Persistence.Migrations", "MediaContentSystem.Persistence.Migrations\MediaContentSystem.Persistence.Migrations.csproj", "{D119A4AD-2D4E-4A4D-A0A3-B002DDF04EF2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaContentSystem.Persistence.Migrations", "src\MediaContentSystem.Persistence.Migrations\MediaContentSystem.Persistence.Migrations.csproj", "{D119A4AD-2D4E-4A4D-A0A3-B002DDF04EF2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

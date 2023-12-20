@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\MediaContentSystem.Persistence\MediaContentSystem.Persistence.csproj" />
+    <ProjectReference Include="..\MediaContentSystem.Persistence\MediaContentSystem.Persistence.csproj" />
   </ItemGroup>
 
 </Project>
