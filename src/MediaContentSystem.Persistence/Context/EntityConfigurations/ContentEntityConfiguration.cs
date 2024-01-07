@@ -21,8 +21,8 @@ public class ContentEntityConfiguration : IEntityTypeConfiguration<Content>
             .IsRequired(false);
 
         builder
-            .HasMany(content => content.Users)
-            .WithMany(user => user.Contents)
+            .HasMany(_ => _.Users)
+            .WithMany(_ => _.Contents)
             .UsingEntity<Dictionary<int, int>>("UserContents",
                 _ => _.HasOne<User>().WithMany().HasForeignKey("UserId"),
                 _ => _.HasOne<Content>().WithMany().HasForeignKey("ContentId"));
