@@ -1,4 +1,4 @@
-﻿namespace MediaContentSystem.Domain.Common;
+﻿namespace MediaContentSystem.Domain.Aggregates.ContentAggregates;
 
 public enum ContentType
 {

@@ -16,6 +16,5 @@ public class Like : Entity, IAggregateRoot
     public User User { get; set; } = null!;
     public int UserId { get; set; }
 
-
-    public DateTime CommentDate { get; private set; }
+    public DateTime LikeDate { get; private set; }
 }

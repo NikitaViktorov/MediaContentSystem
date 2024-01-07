@@ -34,9 +34,6 @@ public class User : Entity, IAggregateRoot
     [MaxLength(50)]
     public string Password { get; private set; } = null!;
 
-    [Column(TypeName = "nvarchar(11)")]
-    public ContentType? ContentType { get; private set; }
-
     public bool IsAdmin { get; private set; }
 
     public virtual IReadOnlyCollection<Comment> Comments => _comments.AsReadOnly();
