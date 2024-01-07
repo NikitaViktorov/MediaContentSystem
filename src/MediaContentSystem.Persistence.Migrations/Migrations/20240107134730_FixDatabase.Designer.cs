@@ -4,6 +4,7 @@ using MediaContentSystem.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MediaContentSystem.Persistence.Migrations.Migrations
 {
     [DbContext(typeof(MediaContentSystemContext))]
-    partial class MediaContentSystemContextModelSnapshot : ModelSnapshot
+    [Migration("20240107134730_FixDatabase")]
+    partial class FixDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -117,9 +120,6 @@ namespace MediaContentSystem.Persistence.Migrations.Migrations
                     b.Property<DateTime>("Birthday")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(250)
@@ -143,35 +143,9 @@ namespace MediaContentSystem.Persistence.Migrations.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
                     b.HasKey("Id");
 
                     b.ToTable("Users", (string)null);
-                });
-
-            modelBuilder.Entity("MediaContentSystem.Domain.Aggregates.UserProfileAggregates.UserProfile", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("URL")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserProfiles", (string)null);
                 });
 
             modelBuilder.Entity("UserContents", b =>
@@ -229,15 +203,6 @@ namespace MediaContentSystem.Persistence.Migrations.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("MediaContentSystem.Domain.Aggregates.UserProfileAggregates.UserProfile", b =>
-                {
-                    b.HasOne("MediaContentSystem.Domain.Aggregates.UserAggregate.User", "User")
-                        .WithMany("UserProfiles")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("UserContents", b =>
                 {
                     b.HasOne("MediaContentSystem.Domain.Aggregates.ContentAggregates.Content", null)
@@ -268,8 +233,6 @@ namespace MediaContentSystem.Persistence.Migrations.Migrations
                     b.Navigation("Comments");
 
                     b.Navigation("Likes");
-
-                    b.Navigation("UserProfiles");
                 });
 #pragma warning restore 612, 618
         }

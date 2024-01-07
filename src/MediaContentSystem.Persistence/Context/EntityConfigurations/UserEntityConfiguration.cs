@@ -19,13 +19,18 @@ public class UserEntityConfiguration : IEntityTypeConfiguration<User>
             .HasForeignKey(_ => _.UserId);
 
         builder
-            .HasMany(_ => _.Contents)
-            .WithMany(_ => _.Users)
-            .UsingEntity("UserContents");
-
-        builder
             .HasMany(_ => _.Likes)
             .WithOne(_ => _.User)
             .HasForeignKey(_ => _.UserId);
+
+        builder
+            .HasMany(_ => _.UserProfiles)
+            .WithOne(_ => _.User)
+            .HasForeignKey(_ => _.UserId);
+
+        builder
+            .HasMany(_ => _.Contents)
+            .WithMany(_ => _.Users)
+            .UsingEntity("UserContents");
     }
 }
