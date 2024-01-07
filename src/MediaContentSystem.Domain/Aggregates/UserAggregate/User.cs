@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using MediaContentSystem.Domain.Aggregates.CommentAggregates;
 using MediaContentSystem.Domain.Aggregates.ContentAggregates;
 using MediaContentSystem.Domain.Aggregates.LikeAggregates;
@@ -30,6 +31,10 @@ public class User : Entity, IAggregateRoot
     [MaxLength(250)] 
     public string Email { get; private set; } = null!;
 
+    [MaxLength(50)]
+    public string Password { get; private set; } = null!;
+
+    [Column(TypeName = "nvarchar(11)")]
     public ContentType? ContentType { get; private set; }
 
     public bool IsAdmin { get; private set; }
