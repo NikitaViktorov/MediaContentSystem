@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MediaContentSystem.Persistence.Migrations.Migrations
 {
     /// <inheritdoc />
-    public partial class AddContentTableAndLikeTableButRemoveThemeTable : Migration
+    public partial class CreateOtherTables : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,11 +17,27 @@ namespace MediaContentSystem.Persistence.Migrations.Migrations
             migrationBuilder.DropTable(
                 name: "Themes");
 
-            migrationBuilder.AddColumn<int>(
-                name: "ContentType",
+            migrationBuilder.AddColumn<DateTime>(
+                name: "CreatedAt",
                 table: "Users",
-                type: "int",
-                nullable: true);
+                type: "datetime2",
+                nullable: false,
+                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
+
+            migrationBuilder.AddColumn<string>(
+                name: "Password",
+                table: "Users",
+                type: "nvarchar(50)",
+                maxLength: 50,
+                nullable: false,
+                defaultValue: "");
+
+            migrationBuilder.AddColumn<DateTime>(
+                name: "UpdatedAt",
+                table: "Users",
+                type: "datetime2",
+                nullable: false,
+                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
 
             migrationBuilder.AddColumn<DateTime>(
                 name: "CommentDate",
@@ -45,6 +61,25 @@ namespace MediaContentSystem.Persistence.Migrations.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserProfiles",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(type: "int", nullable: true),
+                    URL = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserProfiles", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserProfiles_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Likes",
                 columns: table => new
                 {
@@ -53,7 +88,7 @@ namespace MediaContentSystem.Persistence.Migrations.Migrations
                     ContentId = table.Column<int>(type: "int", nullable: true),
                     CommentId = table.Column<int>(type: "int", nullable: true),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    CommentDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    LikeDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -80,21 +115,21 @@ namespace MediaContentSystem.Persistence.Migrations.Migrations
                 name: "UserContents",
                 columns: table => new
                 {
-                    ContentsId = table.Column<int>(type: "int", nullable: false),
-                    UsersId = table.Column<int>(type: "int", nullable: false)
+                    ContentId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserContents", x => new { x.ContentsId, x.UsersId });
+                    table.PrimaryKey("PK_UserContents", x => new { x.ContentId, x.UserId });
                     table.ForeignKey(
-                        name: "FK_UserContents_Contents_ContentsId",
-                        column: x => x.ContentsId,
+                        name: "FK_UserContents_Contents_ContentId",
+                        column: x => x.ContentId,
                         principalTable: "Contents",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserContents_Users_UsersId",
-                        column: x => x.UsersId,
+                        name: "FK_UserContents_Users_UserId",
+                        column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -116,9 +151,14 @@ namespace MediaContentSystem.Persistence.Migrations.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserContents_UsersId",
+                name: "IX_UserContents_UserId",
                 table: "UserContents",
-                column: "UsersId");
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserProfiles_UserId",
+                table: "UserProfiles",
+                column: "UserId");
         }
 
         /// <inheritdoc />
@@ -131,10 +171,21 @@ namespace MediaContentSystem.Persistence.Migrations.Migrations
                 name: "UserContents");
 
             migrationBuilder.DropTable(
+                name: "UserProfiles");
+
+            migrationBuilder.DropTable(
                 name: "Contents");
 
             migrationBuilder.DropColumn(
-                name: "ContentType",
+                name: "CreatedAt",
+                table: "Users");
+
+            migrationBuilder.DropColumn(
+                name: "Password",
+                table: "Users");
+
+            migrationBuilder.DropColumn(
+                name: "UpdatedAt",
                 table: "Users");
 
             migrationBuilder.DropColumn(

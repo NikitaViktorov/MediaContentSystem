@@ -1,7 +1,7 @@
 ﻿using MediaContentSystem.Domain.Aggregates.ContentAggregates;
+using MediaContentSystem.Domain.Aggregates.UserAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System.Reflection.Emit;
 
 namespace MediaContentSystem.Persistence.Context.EntityConfigurations;
 
@@ -19,5 +19,12 @@ public class ContentEntityConfiguration : IEntityTypeConfiguration<Content>
             .WithOne(_ => _.Content)
             .HasForeignKey(_ => _.ContentId)
             .IsRequired(false);
+
+        builder
+            .HasMany(content => content.Users)
+            .WithMany(user => user.Contents)
+            .UsingEntity<Dictionary<int, int>>("UserContents",
+                _ => _.HasOne<User>().WithMany().HasForeignKey("UserId"),
+                _ => _.HasOne<Content>().WithMany().HasForeignKey("ContentId"));
     }
 }

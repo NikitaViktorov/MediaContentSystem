@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MediaContentSystem.Persistence.Migrations.Migrations
 {
     [DbContext(typeof(MediaContentSystemContext))]
-    [Migration("20240107081637_AddContentTableAndLikeTableButRemoveThemeTable")]
-    partial class AddContentTableAndLikeTableButRemoveThemeTable
+    [Migration("20240107203900_CreateOtherTables")]
+    partial class CreateOtherTables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -86,14 +86,14 @@ namespace MediaContentSystem.Persistence.Migrations.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CommentDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<int?>("CommentId")
                         .HasColumnType("int");
 
                     b.Property<int?>("ContentId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("LikeDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -120,8 +120,8 @@ namespace MediaContentSystem.Persistence.Migrations.Migrations
                     b.Property<DateTime>("Birthday")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("ContentType")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -136,27 +136,58 @@ namespace MediaContentSystem.Persistence.Migrations.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<string>("Surname")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
                     b.ToTable("Users", (string)null);
                 });
 
+            modelBuilder.Entity("MediaContentSystem.Domain.Aggregates.UserProfileAggregates.UserProfile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("URL")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserProfiles", (string)null);
+                });
+
             modelBuilder.Entity("UserContents", b =>
                 {
-                    b.Property<int>("ContentsId")
+                    b.Property<int>("ContentId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UsersId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("ContentsId", "UsersId");
+                    b.HasKey("ContentId", "UserId");
 
-                    b.HasIndex("UsersId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("UserContents");
                 });
@@ -201,17 +232,26 @@ namespace MediaContentSystem.Persistence.Migrations.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("MediaContentSystem.Domain.Aggregates.UserProfileAggregates.UserProfile", b =>
+                {
+                    b.HasOne("MediaContentSystem.Domain.Aggregates.UserAggregate.User", "User")
+                        .WithMany("UserProfiles")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("UserContents", b =>
                 {
                     b.HasOne("MediaContentSystem.Domain.Aggregates.ContentAggregates.Content", null)
                         .WithMany()
-                        .HasForeignKey("ContentsId")
+                        .HasForeignKey("ContentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("MediaContentSystem.Domain.Aggregates.UserAggregate.User", null)
                         .WithMany()
-                        .HasForeignKey("UsersId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -231,6 +271,8 @@ namespace MediaContentSystem.Persistence.Migrations.Migrations
                     b.Navigation("Comments");
 
                     b.Navigation("Likes");
+
+                    b.Navigation("UserProfiles");
                 });
 #pragma warning restore 612, 618
         }

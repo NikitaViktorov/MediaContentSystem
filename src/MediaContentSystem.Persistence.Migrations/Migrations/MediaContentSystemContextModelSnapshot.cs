@@ -176,15 +176,15 @@ namespace MediaContentSystem.Persistence.Migrations.Migrations
 
             modelBuilder.Entity("UserContents", b =>
                 {
-                    b.Property<int>("ContentsId")
+                    b.Property<int>("ContentId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UsersId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("ContentsId", "UsersId");
+                    b.HasKey("ContentId", "UserId");
 
-                    b.HasIndex("UsersId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("UserContents");
                 });
@@ -242,13 +242,13 @@ namespace MediaContentSystem.Persistence.Migrations.Migrations
                 {
                     b.HasOne("MediaContentSystem.Domain.Aggregates.ContentAggregates.Content", null)
                         .WithMany()
-                        .HasForeignKey("ContentsId")
+                        .HasForeignKey("ContentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("MediaContentSystem.Domain.Aggregates.UserAggregate.User", null)
                         .WithMany()
-                        .HasForeignKey("UsersId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
