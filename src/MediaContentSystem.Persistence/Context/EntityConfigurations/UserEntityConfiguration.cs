@@ -14,8 +14,18 @@ public class UserEntityConfiguration : IEntityTypeConfiguration<User>
         builder.Ignore(_ => _.DomainEvents);
 
         builder
-            .HasMany(_ => _.Themes)
+            .HasMany(_ => _.Comments)
+            .WithOne(_ => _.User)
+            .HasForeignKey(_ => _.UserId);
+
+        builder
+            .HasMany(_ => _.Contents)
             .WithMany(_ => _.Users)
-            .UsingEntity("UserThemes");
+            .UsingEntity("UserContents");
+
+        builder
+            .HasMany(_ => _.Likes)
+            .WithOne(_ => _.User)
+            .HasForeignKey(_ => _.UserId);
     }
 }

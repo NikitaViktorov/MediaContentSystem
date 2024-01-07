@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using MediaContentSystem.Domain.Aggregates.CommentAggregates;
-using MediaContentSystem.Domain.Aggregates.ThemeAggregates;
+using MediaContentSystem.Domain.Aggregates.ContentAggregates;
+using MediaContentSystem.Domain.Aggregates.LikeAggregates;
 using MediaContentSystem.Domain.Aggregates.UserAggregate;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,7 +16,8 @@ public class MediaContentSystemContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Comment>();
-        modelBuilder.Entity<Theme>();
+        modelBuilder.Entity<Content>();
+        modelBuilder.Entity<Like>();
         modelBuilder.Entity<User>();
 
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());

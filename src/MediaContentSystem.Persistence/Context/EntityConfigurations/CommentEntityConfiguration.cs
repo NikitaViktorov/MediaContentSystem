@@ -14,9 +14,9 @@ public class CommentEntityConfiguration : IEntityTypeConfiguration<Comment>
         builder.Ignore(_ => _.DomainEvents);
 
         builder
-            .HasOne(_ => _.User)
-            .WithMany(_ => _.Comments)
-            .HasForeignKey(_ => _.UserId)
-            .IsRequired();
+            .HasMany(_ => _.Likes)
+            .WithOne(_ => _.Comment)
+            .HasForeignKey(_ => _.CommentId)
+            .IsRequired(false);
     }
 }
